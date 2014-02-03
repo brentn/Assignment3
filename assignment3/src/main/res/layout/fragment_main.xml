@@ -15,16 +15,19 @@
         android:layout_alignParentTop="true"
         android:id="@+id/story_screen"
         android:background="@drawable/story_bg"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:paddingTop="45dp"
+        android:paddingBottom="45dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="30dp"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:clickable="false">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/story"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="145dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="30dp"
             android:textColor="#500050"
             android:textSize="26sp"
             android:lineSpacingExtra="4dp"
@@ -37,7 +40,8 @@
         android:layout_height="match_parent"
         android:id="@+id/input_screen"
         android:background="@color/input_screen_background"
-        android:visibility="invisible">
+        android:visibility="visible"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"

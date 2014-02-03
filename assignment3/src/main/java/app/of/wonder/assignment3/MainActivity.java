@@ -4,16 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -42,26 +39,6 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -97,11 +74,13 @@ public class MainActivity extends ActionBarActivity {
                     generateData(field);
                 } else {
                     EditText item = (EditText) inflater.inflate(R.xml.input_text, null);
+                    item.setContentDescription(field);
                     item.setHint(field);
                     input_screen.addView(item, layout);
                 }
             }
             Button go = new Button(getActivity());
+            go.setPadding(5,10,5,20);
             go.setText(getResources().getString(R.string.generate_story));
             go.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,8 +95,7 @@ public class MainActivity extends ActionBarActivity {
             });
             input_screen.addView(go);
             showInputView();
-            String story = template;
-            return story;
+            return template;
         }
 
         private boolean validate(ViewGroup group) {
@@ -127,9 +105,12 @@ public class MainActivity extends ActionBarActivity {
             for (int i=0; i<count; i++) {
                 if (group.getChildAt(i) instanceof EditText) {
                     field = (EditText) group.getChildAt(i);
-                    if (field.getText().toString().isEmpty()) {
-                        Toast.makeText(getActivity(),"Oops!  You missed one!",Toast.LENGTH_LONG).show();
-                        return false;
+                    if (prefs.getString(field.getContentDescription().toString(),"").isEmpty()) {
+                        if (field.getText().toString().isEmpty()) {
+                            Toast.makeText(getActivity(),"Oops!  You need to provide a "
+                                    +field.getContentDescription().toString(),Toast.LENGTH_LONG).show();
+                            return false;
+                        }
                     }
                 }
             }
@@ -140,6 +121,7 @@ public class MainActivity extends ActionBarActivity {
             // for fields that contain '|', just store the value as is.
             if (!field.contains("|")) return;
             prefs.edit().putString(field, field).commit();
+            Log.d(TAG,field);
         }
 
         private void storeData(ViewGroup group) {
@@ -152,43 +134,51 @@ public class MainActivity extends ActionBarActivity {
                 if (group.getChildAt(i) instanceof EditText) {
                     field = (EditText) group.getChildAt(i);
                     value = prefs.getString(field.getHint().toString(), "");
-                    if (!value.isEmpty()) {
+                    if (!value.isEmpty() && !field.getText().toString().isEmpty()) {
                         value+="|";
                     }
                     value += field.getText().toString();
-                    prefs.edit().putString(field.getHint().toString(), value).commit();
-                    Log.d(TAG, field.getText().toString()+":"+value);
+                    prefs.edit().putString(field.getContentDescription().toString(), value).commit();
+                    Log.d(TAG, field.getContentDescription().toString()+":"+value);
                 }
             }
         }
 
         private String substitute(String template) {
             //substitute each value in to the story
-            Pattern  pattern = Pattern.compile("\\[([^\\]]*)\\]");
+            Pattern  pattern = Pattern.compile("\\[([^\\+\\]]*)\\]");
             Matcher matcher = pattern.matcher(template);
             String key, new_word;
             while (matcher.find()) {
                 key = matcher.group(1);
                 new_word = retrieveWord(key);
+                key = key.replaceAll("\\|","\\\\\\|");
                 template = template.replaceFirst("\\["+key+"\\]", new_word);
+                template = template.replaceAll("\\[\\+"+key+"\\]", new_word);
+                Log.d(TAG, "key:"+key);
+                Log.d(TAG, "more:"+"\\[\\+"+key+"\\]");
             }
             return template;
         }
 
         private String retrieveWord(String key) {
             // for keys with multiple values (containing '|'), pick a random value.
-            String[] values = prefs.getString(key, "").split("|");
+            String[] values = prefs.getString(key, "").split("\\|");
             int index = new Random().nextInt(values.length);
-            return values[index];
+            String result = values[index];
+            Log.d(TAG, values[index]+":"+result);
+            return result;
         }
 
-        private List getFields(String text) {
-            List result = new ArrayList();
-            Pattern pattern = Pattern.compile("\\[([^\\]]*)\\]");
+        private List<String> getFields(String text) {
+            List<String> result = new ArrayList<String>();
+            Pattern pattern = Pattern.compile("\\[([^\\+\\]]*)\\]");
             Matcher matcher = pattern.matcher(text);
             while (matcher.find()) {
                 result.add(matcher.group(1));
             }
+            // sorting will somewhat randomize the fields, as well as grouping related fields together.
+            Collections.sort(result);
             return result;
         }
 
@@ -200,6 +190,7 @@ public class MainActivity extends ActionBarActivity {
         private void showStoryView() {
             inputView.setVisibility(View.GONE);
             storyView.setVisibility(View.VISIBLE);
+            storyView.requestFocus();
         }
     }
 
