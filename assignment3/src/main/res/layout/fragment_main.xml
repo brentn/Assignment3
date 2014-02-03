@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="app.of.wonder.assignment3.MainActivity$PlaceholderFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/story_screen"
+        android:background="@drawable/story_bg"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/story"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="145dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="30dp"
+            android:textColor="#500050"
+            android:textSize="26sp"
+            android:lineSpacingExtra="4dp"
+            android:text="Sample text to see what it will look like on the screen"/>
+
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/input_screen"
+        android:background="@color/input_screen_background"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:id="@+id/input_fields">
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

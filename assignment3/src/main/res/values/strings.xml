@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Story Maker</string>
+    <string name="action_settings">Settings</string>
+    <string name="sample_story">There once was an [Adjective] [Noun], who really [loved|hated] [Verb that ends with \'ing\']</string>
+    <string name="generate_story">Generate Story</string>
+
+</resources>
