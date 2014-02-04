@@ -25,6 +25,13 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends ActionBarActivity {
 
+// This app allows you to create your own story from a template (in the strings file).
+// The template can surround fields, denoted by square brackets, for which the user will provide values.
+// It can also provide "this or that" choices formatted as a field with pipes: ie. [this|that|the other]
+// for which the computer will provide the value (random)
+// finally, to re-use a field, prefix it with "+", so that [+Girls name] will be replaced with the whatever
+// the first value of [Girls name] was throughout the story.  (note that quotes must be preceeded by backslashes)
+
 
 
     @Override
@@ -40,9 +47,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
 
         private static final String TAG = "MainActivity";
