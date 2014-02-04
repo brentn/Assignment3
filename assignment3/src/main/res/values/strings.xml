@@ -3,21 +3,28 @@
 
     <string name="app_name">Story Maker</string>
     <string name="action_settings">Settings</string>
-    <string name="sample_story">Once upon a time there lived a girl named [Girl\'s name], who was such a [Adjective] [Occupation] that she often
+    <string name="template_1">Once upon a time there lived a girl named [Girl\'s name], who was such a [Adjective] [Occupation] that she often
         [forgot to practice|received awards for|found herself giving advice about] how she did it.\n  One day, while [+Girl\'s name] was eating [Meal],
     she was approached by a [Adjective] [Animal] named [Girl\'s name] who asked her if she had ever been to [Place].  [+Girl\'s name] said that she [had|hadn\'t ever]
     been to [+Place] before, and asked the [+Animal] why it needed to know.  The [+Animal] said it was because it needed to [Verb] with a [Object], but had not been able to find
     a suitable [+Object] nearby.  A [Animal] wearing a [Color] [Article of clothing] had told her that if she [hurried|counted to 12|clicked her heels together 3 times], then
     she could find a [+Object] at [+Place].  But of course, the [+Animal] had never been to [+Place] before, and didn\'t know how to get there.  (Not to mention that
-    she didn\'t have a [bus ticket|car|hovercraft|speedboat]!)\n[Girl\'s name] was [frightened by|encouraged by|in love with] the [+Adjective] [+Animal] (since she [+had|hadn\'t ever]
-    boon to [+Place] recently), and strangely enough, the [+Animal] became [+frightened by|encouraged by|in love with] her!\n  Just then, a [healthy|rich|powerful|magical]
+    she didn\'t have a [bus ticket|car|hovercraft|speedboat]!)\n[+Girl\'s name] was [frightened by|encouraged by|in love with] the [+Adjective] [+Animal] (since she [+had|hadn\'t ever]
+    been to [+Place] recently), and strangely enough, the [+Animal] became [+frightened by|encouraged by|in love with] her!\n  Just then, a [healthy|rich|powerful|magical]
     [hero|warrior|alien] named [Boy\'s name] appeared, armed with a [Adjective] [Weapon] and [Number] [Small object]s.  With a [Exciting action word], [+Boy\'s name]
     the [+hero|warrior|alien] grabbed his [+Weapon] and gave it to [+Girl\'s name].  She took the [+Weapon] and with [practiced ease|bumbling luck] she threw the [+Weapon] down
     right in front of the [+Animal].  The [+Animal], confused by the situation, thought that the [+Weapon] might work as a [+Object], and picked it up and began to [+Verb]!
-    The [+Animal] was [elated|dumbfounded|distracted], and while he was [+Verb]ing with the [+Weapon], [+Boy\'s name] the [+hero|warrior|alien] grabbed [Girl\'s name]\'s hand
+    The [+Animal] was [elated|dumbfounded|distracted], and while he was [+Verb]ing with the [+Weapon], [+Boy\'s name] the [+hero|warrior|alien] grabbed [+Girl\'s name]\'s hand
     and [kissed|slapped|twisted|shook] it, and they ran off together into the sunset.\n
-    The [+Animal], confused, continued to [+Verb] with it's [+Object], and didn't even notice they had left.\n
+    The [+Animal], confused, continued to [+Verb] with it\'s [+Object], and didn\'t even notice they had left.\n
     The end.</string>
+    <string name="template_2">Once upon a time there was a [thing] who\'s name was [boy\'s name] who loved [thing ending in \"ing\"]. \n
+    One day as he was [verb ending with \"ing\"] he spotted [girl\'s name]. Hello, you know you are really
+    [feeling word]. [funny sound], everyone says that, do you really think it is true... boom!
+    suddenly [girls name] apeared out from [place] with her best friend [unknown person]. They all started [verb ending with \"ing\"] and the whole [place] blew up!
+    The End.</string>
+    <string name="template_3">Once upon a time a [creature] named [girl name]. one day she was [verb ending in ing], and out of nowhere came a [thing]. its name was
+        [boy grade 5] and it loved [+girl name] ... it gave a [weird sound] then all of a sudden they both were in love.</string>
     <string name="generate_story">Generate Story</string>
 
 </resources>

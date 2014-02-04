@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             inputView = rootView.findViewById(R.id.input_screen);
             ViewGroup input_fields = (ViewGroup) inputView.findViewById(R.id.input_fields);
             storyView = rootView.findViewById(R.id.story_screen);
-            gatherData(getResources().getString(R.string.sample_story), input_fields);
+            gatherData(getResources().getString(R.string.template_1), input_fields);
             return rootView;
         }
 
